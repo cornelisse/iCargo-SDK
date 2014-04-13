@@ -88,21 +88,20 @@ How information elements are stored per entity is not prescribed and is an imple
 
 The following  design pattern can be used with easy/lazy decomposition of facts in mind.
 
-#### *1. Append fact to entity attribute "facts"* 
+#### *Append fact to entity attribute "facts"* 
 Reduce facts by skipping the "subject" attribute and than append the fact to the list stored in the entity-attribute called "facts". The list is een array and the index can be used to refer to stored facts for that entity.
 The internal format for the entity-attribute "facts" might look like:
 ```javascript
 	entity.facts = Array of records
 	record = [timestamp, content, place, state, source, payload]
 ```
-#### *2. Process secondary attributes*
+#### *Process secondary attributes*
 There are three ways to deal with secondary attributes:
-1. add all keywords found as payload of a fact or update the secondary attributes with the same name if they already exist. This requires only invoking the proper workflow which is a lazy way of configuration and recommended for cases where the attributes are unknown in advance or conditional. The disadvantage of this approach is less control over the entity data structure;
-2. update only predefined/known secondary attributes found as keyword in the payload. This is the preferred way because the owner has control over which information is important and which information is relevant but doesn't have to be accessible directly; 
-3. or simple ignore them but append the received fact to the primary attribute "facts".
+* add all keywords found as payload of a fact or update the secondary attributes with the same name if they already exist. This requires only invoking the proper workflow which is a lazy way of configuration and recommended for cases where the attributes are unknown in advance or conditional. The disadvantage of this approach is less control over the entity data structure;
+* update only predefined/known secondary attributes found as keyword in the payload. This is the preferred way because the owner has control over which information is important and which information is relevant but doesn't have to be accessible directly; 
+* or simple ignore them but append the received fact to the primary attribute "facts".
 
-Scan the payload of the fact for known secondary attributes and if present, update the value of the entity-attribute with the same name. The updated entity-attribute than contains the last known value. See [jsFiddle](http://jsfiddle.net/ErikCornelisse/5VDSc/) for a working example in JavaScript.
-
+The preferred way is to scan the payload of the fact for known secondary attributes and if present, update the value of the entity-attribute with the same name. The updated entity-attribute than contains the last known value. See [jsFiddle](http://jsfiddle.net/ErikCornelisse/2ULyM/) for a working example in JavaScript.
 
 In addition, a reference to the fact that caused the update, can be attached to that attribute. In this way, the timestamp and source are also easy to determine. Otherwise a query is required to determine the source and timestamp from the stored "facts". 
 
