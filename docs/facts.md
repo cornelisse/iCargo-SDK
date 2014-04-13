@@ -1,5 +1,4 @@
 # How to handle Facts ?
----
 
 ## Information elements
 A Fact is a collection of information elements stored in the envelope and the payload. Information elements are the smallest for the business significant pieces of information, defined in the semantic model of an Access Point. An information element can be stored as an attribute of an entity. Two types of entity attributes can be distinguished: primary and secondary attributes.
@@ -71,7 +70,7 @@ In general there are three activities to perform:
 * to decompose and store information elements within a fact. How to decompose a fact depends on how the information elements are stored. Therefore, the storing activity will be explained first;
 * to compose a new fact to share information with others.
 
-## Fact workflow
+## Determine and invoke a workflow
 The API specification defines how to invoke the proper workflow based on the HTTP method and the path structure. Basically there are two ways to invoke a workflow by firing a rule:
 * a rule associated with the subject (=entity)
 * a rule associated with a from-to-content relation. 
@@ -89,18 +88,26 @@ How information elements are stored per entity is not prescribed and is an imple
 
 The following  design pattern can be used with easy/lazy decomposition of facts in mind.
 
-1. *Append fact to entity attribute "facts"* 
+#### *1. Append fact to entity attribute "facts"* 
 Reduce facts by skipping the "subject" attribute and than append the fact to the list stored in the entity-attribute called "facts". The list is een array and the index can be used to refer to stored facts for that entity.
 The internal format for the entity-attribute "facts" might look like:
 ```javascript
 	entity.facts = Array of records
 	record = [timestamp, content, place, state, source, payload]
 ```
-2. *Process secondary attributes*
-Scan the payload of the fact for secondary attributes and if present, update the value of the entity-attribute with the same name. The update entity-attribute than contains the last known value. In addition, a reference to the fact that caused the update, can be attached to that attribute. In this way, the timestamp and source are also easy to determine.
+#### *2. Process secondary attributes*
+There are three ways to deal with secondary attributes:
+1. add all keywords found as payload of a fact or update the secondary attributes with the same name if they already exist. This requires only invoking the proper workflow which is a lazy way of configuration and recommended for cases where the attributes are unknown in advance or conditional. The disadvantage of this approach is less control over the entity data structure;
+2. update only predefined/known secondary attributes found as keyword in the payload. This is the preferred way because the owner has control over which information is important and which information is relevant but doesn't have to be accessible directly; 
+3. or simple ignore them but append the received fact to the primary attribute "facts".
+
+Scan the payload of the fact for known secondary attributes and if present, update the value of the entity-attribute with the same name. The updated entity-attribute than contains the last known value. See [jsFiddle](http://jsfiddle.net/ErikCornelisse/5VDSc/) for a working example in JavaScript.
+
+
+In addition, a reference to the fact that caused the update, can be attached to that attribute. In this way, the timestamp and source are also easy to determine. Otherwise a query is required to determine the source and timestamp from the stored "facts". 
 
 Note:
-Strongly related to storing information elements are query and composition actions which should take in account too when making a final decision about the implementation design.
+Strongly related to storing information elements are query and composition actions which should take in account too when making a final decision about the implementation design. The choice for selecting the secondary attributes will most likely depend on the demand for query and composition functionality. 
 
 
 ## Compose a new fact
