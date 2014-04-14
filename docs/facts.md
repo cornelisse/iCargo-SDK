@@ -119,11 +119,13 @@ Information at an Access Point is clustered per entity according to the entity-c
 
 #### Common response facts
 Common response facts are composed based on information stored at an Access Point. They are not dictated by the iCargo REST interface and require a design decision for the implementation of an Access Point. Based on the proposed approach for storing information elements per entity, the following three types of response facts are identified as common:
+
 1. a **log-fact** as a (subset) of stored facts. The query attributes of the REST API can be used to filter the result. This can be useful to share a particular type of information such as a temperature history;
 2. a **attribute-fact** containing all secondary attributes of an entity representing its last known values. The payload is JSON compliant based on key-value pairs;
 3. a **status-fact** to inform the receiver about the last known status of an entity.
 
 *Log-fact:*
+
 The following data-structure can be used as inspiration for implementing the first option:
 ```javascript
 [	
@@ -151,6 +153,7 @@ Note:
 All references are local unique references which became automatically globally unique in combination with the universal unique reference of the Access Point.
 
 *Attribute-fact:*
+
 For this type of response facts, the envelope attributes are defined in the same way as above with one exception, the envelope-attribute "content" needs to refer to a concept in the semantic-model that represents "attribute-fact". 
 
 The payload is a hash table containing the secondary attributes as key-value pairs. For example:
@@ -165,6 +168,7 @@ The payload is a hash table containing the secondary attributes as key-value pai
 ```
 
 *Status-fact:*
+
 A status fact just contains an envelope and has no payload. An important difference with the previous two common facts is the timestamp, which is equal to the timestamp of the state change.
 ```javascript
 [	
