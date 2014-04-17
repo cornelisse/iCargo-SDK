@@ -13,7 +13,7 @@ The last three types of identifiers shall be universal unique in combination wit
 For the creation of a global unique identifier, the [UUID version 5 (SHA-1 hashing)](http://en.wikipedia.org/wiki/Universally_unique_identifier) compliant to RFC-4122 is proposed.  The UUID is a 32 hexadecimal string plus 4 additional dashes represented in a canonical form as `xxxxxxxx-xxxx-5xxx-xxxx-xxxxxxxxxxxx`.
 
 For the creation of a UUID the following approach is being suggested:  
-  1. create one or more Cipher Set fingerprints as input for a SHA-256 hash. The SHA-256 hash (a 64 length lower case hex string) can be used to implement the TeleHash protocol and constructed in the same way as proposed by [Jeremy Miller](https://github.com/telehash/telehash.org/blob/master/hashnames.md);
+  1. create one or more Cipher Set fingerprints as input for a SHA-256 hash. The SHA-256 hash (a 64 length lower case hex string) can be used to implement the TeleHash protocol and constructed in the same way as proposed by [Jeremie Miller](https://github.com/telehash/telehash.org/blob/master/hashnames.md);
   2. use the SHA-256 hash as input for a SHA-1 to create a 160 bit hash which can be used for to create the proposed UUID and also as identification for nodes when using a distributed hash table implementation based on [Kademlia](http://en.wikipedia.org/wiki/Kademlia);
   3. truncate the SHA-1 hash to a 128 bit length to match the specified length of a UUID according to RFC 4122. The four dashes are a quick hint about the hash type. 
 
