@@ -29,8 +29,8 @@ All three hash-keys are derived from the same set of secret keys and can be used
 All information about an entity is clustered in a single electronic document with an unique identifier provided by the document oriented database or a given globally unique id.
 
 Notes: 
-* CouchDB generates UUID's as document ID
-* MongoDB uses a 12 bytes ObjectId
+* CouchDB generates UUID's as document ID;
+* MongoDB uses a 12 bytes (24 hex) ObjectId which is locally unique.
 
 ## Index unique number (Integer)
 A unique number as index for concepts is used to optimise the processing of semantic information. See ... (<- work in progress)
