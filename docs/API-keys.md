@@ -18,10 +18,10 @@ The information related to a known API-key can be used to enrich the context of 
 
 The API-table is derived from a Cooperation Agreement and contains at least the following information:
 * API-key (UUID of cooperation agreement) ->
-** local ID of requesting organisation,
-** local ID of requesting application,
-** local ID of semantic model used by the requesting organisation,
-** local ID of cooperation agreement in case different than UUID.
+ * local ID of requesting organisation,
+ * local ID of requesting application,
+ * local ID of semantic model used by the requesting organisation,
+ * local ID of cooperation agreement in case different than UUID.
 
 Notes:
 Depending on the implementation the local ID can be a UUID but that is not a requirement (See [identifiers](identifiers.md)).
