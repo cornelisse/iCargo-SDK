@@ -39,5 +39,5 @@ Next, the proposed Cooperation Agreement needs to be completed and returned with
 
 #### Connection configuration tools
 
-The creation of Cooperation Agreements and API-keys is an offline task and requires supporting applications or web-services to configure a connection. See [Cooperation Agreement](link.md) for more information.
+The creation of Cooperation Agreements and API-keys is an offline task and requires supporting applications or web-services to configure a connection. See [tooling](tools.md) for more information.
  
