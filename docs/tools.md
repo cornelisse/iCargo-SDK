@@ -22,9 +22,7 @@ Protégé is a free, open-source platform that provides a growing user community
 
 WebProtégé can be used at [Stanford](http://webprotege.stanford.edu) or just like Protégé Desktop downloaded and installed on your own machine. 
 
-Protégé provides support for: editing OWL 2 ontologies, full change tracking and revision history, collaboration such as, sharing and permissions, threaded notes and discussions, watches and email notifications, customizable user interface and forms for application/domain specific editing. Multiple formats are supported for upload and download of ontologies such as: RDF/XML, Turtle and OWL/XML.
-
-(Source: [Protégé wiki](http://protegewiki.stanford.edu/wiki/Main_Page))
+Protégé provides support for: editing OWL 2 ontologies, full change tracking and revision history, collaboration such as, sharing and permissions, threaded notes and discussions, watches and email notifications, customizable user interface and forms for application/domain specific editing. Multiple formats are supported for upload and download of ontologies such as: RDF/XML, Turtle and OWL/XML. (Source: [Protégé wiki](http://protegewiki.stanford.edu/wiki/Main_Page))
 
 #### NeOn
 
